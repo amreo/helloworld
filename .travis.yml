@@ -1,0 +1,28 @@
+os: linux
+dist: xenial
+language: go
+script:
+- if [ -z ${TRAVIS_TAG} ] || [[ ${TRAVIS_TAG} == *-* ]]; then export VERSION=latest;
+  else export VERSION=${TRAVIS_TAG}; fi
+- echo ${TRAVIS_TAG}
+- echo ${VERSION}
+- date > out.txt
+- echo ${VERSION} >> out.txt
+deploy:
+  provider: releases
+  api_key:
+    secure: wpoUPwoYAAzBHtN/+AIzMb03VThVZOMnXUA+vniYLHkC9xsgZcXjXrgwuRXxHocxsxgI12RsRUvSj2mV35hCOfH+21HMGOvtfhS1XeRFsItFgDjSW5MT8R3YDryoxXeV+Kt1IIptqBzyKcdYEqf29GA71lFsK35hZqGVmgCjl9rjbCnK7oqK4yDxrbUs2eAcJGO6BuKDHFP+wDmIZyKciC9SFdROuVFMRMkccwvgq6NW9oI7nHg50FVmLYkOTM6RHOVmG0DIFLYOzX0zrSA6ZT/z0UfP/eQKCNGOXiAgd9WPHzjcS+W5mSDoPe17sq3BS/dCXbxVHWyKXwb20FjfuQyFXmpZVvKLCSzZ3Q4oqMH3T5zW6nMeYzVhPaGoqAdtOS2t0KeZAE0BH1H0baBXsJhbTD0bJnWFoGCg4qiKWys+SmHXM220965zKL0QBgDCVYKyOnhPSic2Si9q5Obx5LqrmtPulb1PuQGrVZEAq5RoiQcWKmzz5b3myb5lkD3Y0kai+XZxWkL685n9HDXF99m2pgQftD+1H/HyCe8QHqaqxdYXdnf6cPUWaDcExXLUK40vpCJj/1RfpDmoKivegwphw+VCdI73o4NF7o4zAYO9Z0wFehZ3hxImZwN9gLV/PD5d9HizmjJ1VGx7K6Hktk0Mn9z7GbU8D0szZfqv7Qc=
+  file: out.txt
+  on:
+    repo: amreo/helloworld
+    tags: true
+
+deploy:
+  provider: releases
+  api_key:
+    secure: wpoUPwoYAAzBHtN/+AIzMb03VThVZOMnXUA+vniYLHkC9xsgZcXjXrgwuRXxHocxsxgI12RsRUvSj2mV35hCOfH+21HMGOvtfhS1XeRFsItFgDjSW5MT8R3YDryoxXeV+Kt1IIptqBzyKcdYEqf29GA71lFsK35hZqGVmgCjl9rjbCnK7oqK4yDxrbUs2eAcJGO6BuKDHFP+wDmIZyKciC9SFdROuVFMRMkccwvgq6NW9oI7nHg50FVmLYkOTM6RHOVmG0DIFLYOzX0zrSA6ZT/z0UfP/eQKCNGOXiAgd9WPHzjcS+W5mSDoPe17sq3BS/dCXbxVHWyKXwb20FjfuQyFXmpZVvKLCSzZ3Q4oqMH3T5zW6nMeYzVhPaGoqAdtOS2t0KeZAE0BH1H0baBXsJhbTD0bJnWFoGCg4qiKWys+SmHXM220965zKL0QBgDCVYKyOnhPSic2Si9q5Obx5LqrmtPulb1PuQGrVZEAq5RoiQcWKmzz5b3myb5lkD3Y0kai+XZxWkL685n9HDXF99m2pgQftD+1H/HyCe8QHqaqxdYXdnf6cPUWaDcExXLUK40vpCJj/1RfpDmoKivegwphw+VCdI73o4NF7o4zAYO9Z0wFehZ3hxImZwN9gLV/PD5d9HizmjJ1VGx7K6Hktk0Mn9z7GbU8D0szZfqv7Qc=
+  file: out.txt
+  name: "latest"
+  body: "latest"
+  prerelease: true
+  overwrite: true
