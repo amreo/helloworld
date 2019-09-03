@@ -1,6 +1,10 @@
 os: linux
 dist: xenial
 language: go
+addons:
+  apt:
+    install: jq
+
 script:
 - if [ -z ${TRAVIS_TAG} ] || [[ ${TRAVIS_TAG} == *-* ]]; then export VERSION=latest;
   else export VERSION=${TRAVIS_TAG}; fi
@@ -8,6 +12,13 @@ script:
 - echo ${VERSION}
 - date > out.txt
 - echo ${VERSION} >> out.txt
+
+before_deploy:
+  - export $OLD_RELEASE_ID=`curl -u amreo:$REMOVE_RELEASE_TOKEN https://api.github.com/repos/amreo/helloworld/releases/tags/master-latest | jq '.id'`
+  - echo $OLD_RELEASE_ID
+  #  - DELETE /repos/:owner/:repo/releases/:release_id
+
+
 deploy:
   provider: releases
   api_key:
@@ -18,14 +29,14 @@ deploy:
     tags: true
   skip_cleanup: true
 
-deploy:
-  provider: releases
-  api_key:
-    secure: wpoUPwoYAAzBHtN/+AIzMb03VThVZOMnXUA+vniYLHkC9xsgZcXjXrgwuRXxHocxsxgI12RsRUvSj2mV35hCOfH+21HMGOvtfhS1XeRFsItFgDjSW5MT8R3YDryoxXeV+Kt1IIptqBzyKcdYEqf29GA71lFsK35hZqGVmgCjl9rjbCnK7oqK4yDxrbUs2eAcJGO6BuKDHFP+wDmIZyKciC9SFdROuVFMRMkccwvgq6NW9oI7nHg50FVmLYkOTM6RHOVmG0DIFLYOzX0zrSA6ZT/z0UfP/eQKCNGOXiAgd9WPHzjcS+W5mSDoPe17sq3BS/dCXbxVHWyKXwb20FjfuQyFXmpZVvKLCSzZ3Q4oqMH3T5zW6nMeYzVhPaGoqAdtOS2t0KeZAE0BH1H0baBXsJhbTD0bJnWFoGCg4qiKWys+SmHXM220965zKL0QBgDCVYKyOnhPSic2Si9q5Obx5LqrmtPulb1PuQGrVZEAq5RoiQcWKmzz5b3myb5lkD3Y0kai+XZxWkL685n9HDXF99m2pgQftD+1H/HyCe8QHqaqxdYXdnf6cPUWaDcExXLUK40vpCJj/1RfpDmoKivegwphw+VCdI73o4NF7o4zAYO9Z0wFehZ3hxImZwN9gLV/PD5d9HizmjJ1VGx7K6Hktk0Mn9z7GbU8D0szZfqv7Qc=
-  file: out.txt
-  name: "master-latest"
-  body: "master-latest"
-  tag_name: master-latest
-  prerelease: true
-  overwrite: true
-  skip_cleanup: true
+# deploy:
+#   provider: releases
+#   api_key:
+#     secure: wpoUPwoYAAzBHtN/+AIzMb03VThVZOMnXUA+vniYLHkC9xsgZcXjXrgwuRXxHocxsxgI12RsRUvSj2mV35hCOfH+21HMGOvtfhS1XeRFsItFgDjSW5MT8R3YDryoxXeV+Kt1IIptqBzyKcdYEqf29GA71lFsK35hZqGVmgCjl9rjbCnK7oqK4yDxrbUs2eAcJGO6BuKDHFP+wDmIZyKciC9SFdROuVFMRMkccwvgq6NW9oI7nHg50FVmLYkOTM6RHOVmG0DIFLYOzX0zrSA6ZT/z0UfP/eQKCNGOXiAgd9WPHzjcS+W5mSDoPe17sq3BS/dCXbxVHWyKXwb20FjfuQyFXmpZVvKLCSzZ3Q4oqMH3T5zW6nMeYzVhPaGoqAdtOS2t0KeZAE0BH1H0baBXsJhbTD0bJnWFoGCg4qiKWys+SmHXM220965zKL0QBgDCVYKyOnhPSic2Si9q5Obx5LqrmtPulb1PuQGrVZEAq5RoiQcWKmzz5b3myb5lkD3Y0kai+XZxWkL685n9HDXF99m2pgQftD+1H/HyCe8QHqaqxdYXdnf6cPUWaDcExXLUK40vpCJj/1RfpDmoKivegwphw+VCdI73o4NF7o4zAYO9Z0wFehZ3hxImZwN9gLV/PD5d9HizmjJ1VGx7K6Hktk0Mn9z7GbU8D0szZfqv7Qc=
+#   file: out.txt
+#   name: "master-latest"
+#   body: "master-latest"
+#   tag_name: master-latest
+#   prerelease: true
+#   overwrite: true
+#   skip_cleanup: true
