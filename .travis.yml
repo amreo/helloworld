@@ -30,7 +30,6 @@ deploy:
   skip_cleanup: true
   on:
     repo: amreo/helloworld
-    tags: false
 
 deploy:
   provider: releases
