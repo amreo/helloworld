@@ -40,3 +40,6 @@ deploy:
   prerelease: true
   overwrite: true
   skip_cleanup: true
+  on:
+    repo: amreo/helloworld
+    tags: false
