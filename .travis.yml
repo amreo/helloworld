@@ -24,16 +24,6 @@ deploy:
   api_key:
     secure: iEgbrlhpcq9XBnO3Tsu4DbZ5IZE0krINx8abTu8LnWX+INHFZ7gDIfhA1sz6uSxsvHt2MGSfDTeoVxtmGQ3xu61q0kTmhKSEFf8t8uMtfVDkLXPQNADDXEYiJ0qRSkrOnMpU4gcxG0GpUBNEYPQDaGfRQ+/m83BlyYInIw1R6c4Ea8qULbty8U1eCbkJ3qkDkh8kMFO69kx991H2CEcYzYZnGcUJ5qYJhc+ZLuWtADr4huh8TK7Wl0NkU5KfHvCZnz6dESLQGZICrTFW6YPcrGvLjDdlYfm2d2fvhIRMeiVt8rmbIGE6JtjCeoEG/3RbzERlRibQJ6B/GeX3uG2fXOGRovZJAlkNx0uzQilKXS0ie380SvPnmyPt/vd2e2vwG8I4Iw79oyS9DUR791xDk/U4jQm2KmRSj2/xax0FFv2MhGrS1zDUIQW0+vQ5VGl/c5Vq8ZM4ADliNzMki7nAtp6YgSa0sDbTFiV4azodxVLkN1NfTOvhBKySq9XvjiwBVfsLT7nfdXAZpsMeL+zQQcsW3ajareZQw/2VAAdRhKB4oZwdHH9wBfSGJ/GTYhrg8Nzhvur9fkke7UObg6GQ8RGPUs47wysW77R/CRrI5OAjoVD0b6DM/QqJ/afFK2nMlsZEwdQBJBKbWhSCk5EdrEvW+z52Pd3yXy3ryI4hMj4=
   file: out.txt
-  on:
-    repo: amreo/helloworld
-    tags: true
-  skip_cleanup: true
-
-deploy:
-  provider: releases
-  api_key:
-    secure: iEgbrlhpcq9XBnO3Tsu4DbZ5IZE0krINx8abTu8LnWX+INHFZ7gDIfhA1sz6uSxsvHt2MGSfDTeoVxtmGQ3xu61q0kTmhKSEFf8t8uMtfVDkLXPQNADDXEYiJ0qRSkrOnMpU4gcxG0GpUBNEYPQDaGfRQ+/m83BlyYInIw1R6c4Ea8qULbty8U1eCbkJ3qkDkh8kMFO69kx991H2CEcYzYZnGcUJ5qYJhc+ZLuWtADr4huh8TK7Wl0NkU5KfHvCZnz6dESLQGZICrTFW6YPcrGvLjDdlYfm2d2fvhIRMeiVt8rmbIGE6JtjCeoEG/3RbzERlRibQJ6B/GeX3uG2fXOGRovZJAlkNx0uzQilKXS0ie380SvPnmyPt/vd2e2vwG8I4Iw79oyS9DUR791xDk/U4jQm2KmRSj2/xax0FFv2MhGrS1zDUIQW0+vQ5VGl/c5Vq8ZM4ADliNzMki7nAtp6YgSa0sDbTFiV4azodxVLkN1NfTOvhBKySq9XvjiwBVfsLT7nfdXAZpsMeL+zQQcsW3ajareZQw/2VAAdRhKB4oZwdHH9wBfSGJ/GTYhrg8Nzhvur9fkke7UObg6GQ8RGPUs47wysW77R/CRrI5OAjoVD0b6DM/QqJ/afFK2nMlsZEwdQBJBKbWhSCk5EdrEvW+z52Pd3yXy3ryI4hMj4=
-  file: out.txt
   name: "master-latest"
   body: "master-latest"
   tag_name: master-latest
@@ -43,3 +33,13 @@ deploy:
   on:
     repo: amreo/helloworld
     tags: false
+
+deploy:
+  provider: releases
+  api_key:
+    secure: iEgbrlhpcq9XBnO3Tsu4DbZ5IZE0krINx8abTu8LnWX+INHFZ7gDIfhA1sz6uSxsvHt2MGSfDTeoVxtmGQ3xu61q0kTmhKSEFf8t8uMtfVDkLXPQNADDXEYiJ0qRSkrOnMpU4gcxG0GpUBNEYPQDaGfRQ+/m83BlyYInIw1R6c4Ea8qULbty8U1eCbkJ3qkDkh8kMFO69kx991H2CEcYzYZnGcUJ5qYJhc+ZLuWtADr4huh8TK7Wl0NkU5KfHvCZnz6dESLQGZICrTFW6YPcrGvLjDdlYfm2d2fvhIRMeiVt8rmbIGE6JtjCeoEG/3RbzERlRibQJ6B/GeX3uG2fXOGRovZJAlkNx0uzQilKXS0ie380SvPnmyPt/vd2e2vwG8I4Iw79oyS9DUR791xDk/U4jQm2KmRSj2/xax0FFv2MhGrS1zDUIQW0+vQ5VGl/c5Vq8ZM4ADliNzMki7nAtp6YgSa0sDbTFiV4azodxVLkN1NfTOvhBKySq9XvjiwBVfsLT7nfdXAZpsMeL+zQQcsW3ajareZQw/2VAAdRhKB4oZwdHH9wBfSGJ/GTYhrg8Nzhvur9fkke7UObg6GQ8RGPUs47wysW77R/CRrI5OAjoVD0b6DM/QqJ/afFK2nMlsZEwdQBJBKbWhSCk5EdrEvW+z52Pd3yXy3ryI4hMj4=
+  file: out.txt
+  on:
+    repo: amreo/helloworld
+    tags: true
+  skip_cleanup: true
