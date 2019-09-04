@@ -15,7 +15,7 @@ script:
 before_deploy:
 - if [[ ${VERSION} == "latest" ]]; then export OLD_RELEASE_ID=`curl -u amreo:$REMOVE_RELEASE_TOKEN https://api.github.com/repos/amreo/helloworld/releases/tags/master-latest | jq '.id'`; fi
 - if [[ ${VERSION} == "latest" ]]; then echo $OLD_RELEASE_ID; fi
-- if [[ ${VERSION} == "latest" ]]; then curl -X DELETE -u amreo:$REMOVE_RELEASE_TOKEN https://api.github.com/repos/amreo/helloworld/releases/$OLD_RELEASE_ID; fi
+- if [[ ${VERSION} == "latest" ]]; then curl -X DELETE -u amreo:$REMOVE_RELEASE_TOKEN https://api.github.com/repos/amreo/helloworld/releases/$OLD_RELEASE_ID; fi || true
 
 deploy:
   - provider: releases
